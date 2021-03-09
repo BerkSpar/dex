@@ -1,13 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dex/app/shared/models/pokemon.dart';
 import 'package:dex/app/shared/extensions/string.dart';
 import 'package:dex/app/shared/utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class PokemonCardWidget extends StatelessWidget {
   final Pokemon pokemon;
+  final Function onTap;
 
-  PokemonCardWidget(this.pokemon);
+  PokemonCardWidget({
+    @required this.pokemon,
+    @required this.onTap,
+  });
 
   Widget _getTypes() {
     return Column(
@@ -37,53 +41,67 @@ class PokemonCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(16),
-      child: Stack(
-        children: [
-          Container(
-            color: colors[pokemon.types[0].type.name],
-          ),
-          Positioned(
-            right: -20,
-            bottom: -20,
-            child: Opacity(
-              opacity: 0.45,
-              child: Image.asset(
-                'assets/pokeball.png',
-                height: 120,
-                width: 120,
+    return GestureDetector(
+      onTap: onTap,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Stack(
+          children: [
+            Container(
+              color: colors[pokemon.types[0].type.name],
+            ),
+            Positioned(
+              right: -20,
+              bottom: -20,
+              child: Opacity(
+                opacity: 0.45,
+                child: Image.asset(
+                  'assets/pokeball.png',
+                  height: 120,
+                  width: 120,
+                ),
               ),
             ),
-          ),
-          Positioned(
-            right: 16,
-            bottom: 16,
-            child: SvgPicture.network(
-              pokemon.sprites.other.dreamWorld.frontDefault,
-              height: 64,
-              width: 64,
+            Positioned(
+              right: 8,
+              bottom: 8,
+              child: CachedNetworkImage(
+                imageUrl: pokemon.gif,
+                height: 80,
+                width: 80,
+              ),
             ),
-          ),
-          Positioned(
-            top: 16,
-            left: 16,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  pokemon.name.capitalize(),
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+            Positioned(
+              top: 8,
+              right: 8,
+              child: Text(
+                '#${pokemon.id.toString().padLeft(3, '0')}',
+                style: TextStyle(
+                  color: darken(colors[pokemon.types[0].type.name], 0.2),
+                  fontWeight: FontWeight.bold,
                 ),
-                _getTypes(),
-              ],
+              ),
             ),
-          ),
-        ],
+            Positioned(
+              top: 16,
+              left: 16,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    pokemon.name.capitalize(),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  _getTypes(),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

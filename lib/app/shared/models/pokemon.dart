@@ -15,6 +15,10 @@ class Pokemon {
   List<Types> types;
   int weight;
 
+  String get gif {
+    return 'https://raw.githubusercontent.com/tdmalone/pokecss-media/master/graphics/pokemon/ani-front/$name.gif';
+  }
+
   Pokemon(
       {this.abilities,
       this.baseExperience,

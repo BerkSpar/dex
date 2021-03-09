@@ -1,10 +1,10 @@
 import 'dart:async';
-
 import 'package:dex/app/shared/models/pokemon.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:dio/native_imp.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class PokeApiRepository extends Disposable {
   final DioForNative _client;
