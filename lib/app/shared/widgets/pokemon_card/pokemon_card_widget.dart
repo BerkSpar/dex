@@ -66,7 +66,7 @@ class PokemonCardWidget extends StatelessWidget {
               right: 8,
               bottom: 8,
               child: CachedNetworkImage(
-                imageUrl: pokemon.gif,
+                imageUrl: pokemon.sprites.other.officialArtwork.frontDefault,
                 height: 80,
                 width: 80,
               ),

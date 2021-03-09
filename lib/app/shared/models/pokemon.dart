@@ -1,3 +1,5 @@
+import 'package:dex/app/shared/extensions/string.dart';
+
 class Pokemon {
   List<Abilities> abilities;
   int baseExperience;
@@ -16,7 +18,7 @@ class Pokemon {
   int weight;
 
   String get gif {
-    return 'https://raw.githubusercontent.com/tdmalone/pokecss-media/master/graphics/pokemon/ani-front/$name.gif';
+    return 'https://raw.githubusercontent.com/tdmalone/pokecss-media/master/graphics/pokemon/ani-front/${name.pokename()}.gif';
   }
 
   Pokemon(
