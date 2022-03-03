@@ -1,7 +1,7 @@
 name: dex
 description: A new Flutter project.
 
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -15,23 +15,23 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  cached_network_image: ^2.5.0
-  pull_to_refresh: ^1.6.4
-  path_provider: ^1.6.27
-  hive: ^1.4.4+1
-  dio: ^3.0.10
-  flutter_mobx: ^1.1.0+2
-  mobx: ^1.2.1+4
-  flutter_modular: ^2.0.1
+  cached_network_image: ^3.2.0
+  pull_to_refresh: ^2.0.0
+  path_provider: ^2.0.9
+  hive: ^2.0.6
+  dio: ^4.0.4
+  flutter_mobx: ^2.0.4
+  mobx: ^2.0.6+1
+  flutter_modular: ^4.5.0
   flutter:
     sdk: flutter
 
 dev_dependencies:
-  modular_codegen: ^2.1.0
-  mobx_codegen: ^1.1.2
-  build_runner: ^1.10.1
+  mobx_codegen: ^2.0.5+2
+  build_runner: ^2.1.7
   flutter_test:
     sdk: flutter
+
 flutter:
   uses-material-design: true
 
