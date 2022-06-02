@@ -10,7 +10,9 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends ModularState<HomePage, HomeController> {
+class _HomePageState extends State<HomePage> {
+  final controller = Modular.get<HomeController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +41,7 @@ class Body extends StatelessWidget {
   final HomeController controller;
 
   const Body({
-    @required this.controller,
+    required this.controller,
   });
 
   @override

@@ -1,24 +1,24 @@
 import 'package:dex/app/shared/extensions/string.dart';
 
 class Pokemon {
-  List<Abilities> abilities;
-  int baseExperience;
-  List<GameIndices> gameIndices;
-  int height;
-  int id;
-  bool isDefault;
-  String locationAreaEncounters;
-  List<Moves> moves;
-  String name;
-  int order;
-  Ability species;
-  Sprites sprites;
-  List<Stats> stats;
-  List<Types> types;
-  int weight;
+  List<Abilities>? abilities;
+  int? baseExperience;
+  List<GameIndices>? gameIndices;
+  int? height;
+  int? id;
+  bool? isDefault;
+  String? locationAreaEncounters;
+  List<Moves>? moves;
+  String? name;
+  int? order;
+  Ability? species;
+  Sprites? sprites;
+  List<Stats>? stats;
+  List<Types>? types;
+  int? weight;
 
   String get gif {
-    return 'https://raw.githubusercontent.com/tdmalone/pokecss-media/master/graphics/pokemon/ani-front/${name.pokename()}.gif';
+    return 'https://raw.githubusercontent.com/tdmalone/pokecss-media/master/graphics/pokemon/ani-front/${name?.pokename()}.gif';
   }
 
   Pokemon(
@@ -42,14 +42,14 @@ class Pokemon {
     if (json['abilities'] != null) {
       abilities = <Abilities>[];
       json['abilities'].forEach((v) {
-        abilities.add(new Abilities.fromJson(v));
+        abilities?.add(new Abilities.fromJson(v));
       });
     }
     baseExperience = json['base_experience'];
     if (json['game_indices'] != null) {
       gameIndices = <GameIndices>[];
       json['game_indices'].forEach((v) {
-        gameIndices.add(new GameIndices.fromJson(v));
+        gameIndices?.add(new GameIndices.fromJson(v));
       });
     }
     height = json['height'];
@@ -59,7 +59,7 @@ class Pokemon {
     if (json['moves'] != null) {
       moves = <Moves>[];
       json['moves'].forEach((v) {
-        moves.add(new Moves.fromJson(v));
+        moves?.add(new Moves.fromJson(v));
       });
     }
     name = json['name'];
@@ -71,13 +71,13 @@ class Pokemon {
     if (json['stats'] != null) {
       stats = <Stats>[];
       json['stats'].forEach((v) {
-        stats.add(new Stats.fromJson(v));
+        stats?.add(new Stats.fromJson(v));
       });
     }
     if (json['types'] != null) {
       types = <Types>[];
       json['types'].forEach((v) {
-        types.add(new Types.fromJson(v));
+        types?.add(new Types.fromJson(v));
       });
     }
     weight = json['weight'];
@@ -85,43 +85,29 @@ class Pokemon {
 
   Map toJson() {
     final Map data = new Map();
-    if (this.abilities != null) {
-      data['abilities'] = this.abilities.map((v) => v.toJson()).toList();
-    }
+    data['abilities'] = this.abilities?.map((v) => v.toJson()).toList();
     data['base_experience'] = this.baseExperience;
-    if (this.gameIndices != null) {
-      data['game_indices'] = this.gameIndices.map((v) => v.toJson()).toList();
-    }
+    data['game_indices'] = this.gameIndices?.map((v) => v.toJson()).toList();
     data['height'] = this.height;
     data['id'] = this.id;
     data['is_default'] = this.isDefault;
     data['location_area_encounters'] = this.locationAreaEncounters;
-    if (this.moves != null) {
-      data['moves'] = this.moves.map((v) => v.toJson()).toList();
-    }
+    data['moves'] = this.moves?.map((v) => v.toJson()).toList();
     data['name'] = this.name;
     data['order'] = this.order;
-    if (this.species != null) {
-      data['species'] = this.species.toJson();
-    }
-    if (this.sprites != null) {
-      data['sprites'] = this.sprites.toJson();
-    }
-    if (this.stats != null) {
-      data['stats'] = this.stats.map((v) => v.toJson()).toList();
-    }
-    if (this.types != null) {
-      data['types'] = this.types.map((v) => v.toJson()).toList();
-    }
+    data['species'] = this.species?.toJson();
+    data['sprites'] = this.sprites?.toJson();
+    data['stats'] = this.stats?.map((v) => v.toJson()).toList();
+    data['types'] = this.types?.map((v) => v.toJson()).toList();
     data['weight'] = this.weight;
     return data;
   }
 }
 
 class Abilities {
-  Ability ability;
-  bool isHidden;
-  int slot;
+  Ability? ability;
+  bool? isHidden;
+  int? slot;
 
   Abilities({this.ability, this.isHidden, this.slot});
 
@@ -134,9 +120,7 @@ class Abilities {
 
   Map toJson() {
     final Map data = new Map();
-    if (this.ability != null) {
-      data['ability'] = this.ability.toJson();
-    }
+    data['ability'] = this.ability?.toJson();
     data['is_hidden'] = this.isHidden;
     data['slot'] = this.slot;
     return data;
@@ -144,8 +128,8 @@ class Abilities {
 }
 
 class Ability {
-  String name;
-  String url;
+  String? name;
+  String? url;
 
   Ability({this.name, this.url});
 
@@ -163,8 +147,8 @@ class Ability {
 }
 
 class GameIndices {
-  int gameIndex;
-  Ability version;
+  int? gameIndex;
+  Ability? version;
 
   GameIndices({this.gameIndex, this.version});
 
@@ -177,16 +161,14 @@ class GameIndices {
   Map toJson() {
     final Map data = new Map();
     data['game_index'] = this.gameIndex;
-    if (this.version != null) {
-      data['version'] = this.version.toJson();
-    }
+    data['version'] = this.version?.toJson();
     return data;
   }
 }
 
 class Moves {
-  Ability move;
-  List<VersionGroupDetails> versionGroupDetails;
+  Ability? move;
+  List<VersionGroupDetails>? versionGroupDetails;
 
   Moves({this.move, this.versionGroupDetails});
 
@@ -195,28 +177,24 @@ class Moves {
     if (json['version_group_details'] != null) {
       versionGroupDetails = <VersionGroupDetails>[];
       json['version_group_details'].forEach((v) {
-        versionGroupDetails.add(new VersionGroupDetails.fromJson(v));
+        versionGroupDetails?.add(new VersionGroupDetails.fromJson(v));
       });
     }
   }
 
   Map toJson() {
     final Map data = new Map();
-    if (this.move != null) {
-      data['move'] = this.move.toJson();
-    }
-    if (this.versionGroupDetails != null) {
-      data['version_group_details'] =
-          this.versionGroupDetails.map((v) => v.toJson()).toList();
-    }
+    data['move'] = this.move?.toJson();
+    data['version_group_details'] =
+        this.versionGroupDetails?.map((v) => v.toJson()).toList();
     return data;
   }
 }
 
 class VersionGroupDetails {
-  int levelLearnedAt;
-  Ability moveLearnMethod;
-  Ability versionGroup;
+  int? levelLearnedAt;
+  Ability? moveLearnMethod;
+  Ability? versionGroup;
 
   VersionGroupDetails(
       {this.levelLearnedAt, this.moveLearnMethod, this.versionGroup});
@@ -234,27 +212,23 @@ class VersionGroupDetails {
   Map toJson() {
     final Map data = new Map();
     data['level_learned_at'] = this.levelLearnedAt;
-    if (this.moveLearnMethod != null) {
-      data['move_learn_method'] = this.moveLearnMethod.toJson();
-    }
-    if (this.versionGroup != null) {
-      data['version_group'] = this.versionGroup.toJson();
-    }
+    data['move_learn_method'] = this.moveLearnMethod?.toJson();
+    data['version_group'] = this.versionGroup?.toJson();
     return data;
   }
 }
 
 class Sprites {
-  String backDefault;
-  String backFemale;
-  String backShiny;
-  String backShinyFemale;
-  String frontDefault;
-  String frontFemale;
-  String frontShiny;
-  String frontShinyFemale;
-  Other other;
-  Versions versions;
+  String? backDefault;
+  String? backFemale;
+  String? backShiny;
+  String? backShinyFemale;
+  String? frontDefault;
+  String? frontFemale;
+  String? frontShiny;
+  String? frontShinyFemale;
+  Other? other;
+  Versions? versions;
 
   Sprites(
       {this.backDefault,
@@ -293,19 +267,15 @@ class Sprites {
     data['front_female'] = this.frontFemale;
     data['front_shiny'] = this.frontShiny;
     data['front_shiny_female'] = this.frontShinyFemale;
-    if (this.other != null) {
-      data['other'] = this.other.toJson();
-    }
-    if (this.versions != null) {
-      data['versions'] = this.versions.toJson();
-    }
+    data['other'] = this.other?.toJson();
+    data['versions'] = this.versions?.toJson();
     return data;
   }
 }
 
 class Other {
-  DreamWorld dreamWorld;
-  OfficialArtwork officialArtwork;
+  DreamWorld? dreamWorld;
+  OfficialArtwork? officialArtwork;
 
   Other({this.dreamWorld, this.officialArtwork});
 
@@ -320,19 +290,15 @@ class Other {
 
   Map toJson() {
     final Map data = new Map();
-    if (this.dreamWorld != null) {
-      data['dream_world'] = this.dreamWorld.toJson();
-    }
-    if (this.officialArtwork != null) {
-      data['official-artwork'] = this.officialArtwork.toJson();
-    }
+    data['dream_world'] = this.dreamWorld?.toJson();
+    data['official-artwork'] = this.officialArtwork?.toJson();
     return data;
   }
 }
 
 class DreamWorld {
-  String frontDefault;
-  String frontFemale;
+  String? frontDefault;
+  String? frontFemale;
 
   DreamWorld({this.frontDefault, this.frontFemale});
 
@@ -350,7 +316,7 @@ class DreamWorld {
 }
 
 class OfficialArtwork {
-  String frontDefault;
+  String? frontDefault;
 
   OfficialArtwork({this.frontDefault});
 
@@ -366,14 +332,14 @@ class OfficialArtwork {
 }
 
 class Versions {
-  GenerationI generationI;
-  GenerationIi generationIi;
-  GenerationIii generationIii;
-  GenerationIv generationIv;
-  GenerationV generationV;
-  GenerationVi generationVi;
-  GenerationVii generationVii;
-  GenerationViii generationViii;
+  GenerationI? generationI;
+  GenerationIi? generationIi;
+  GenerationIii? generationIii;
+  GenerationIv? generationIv;
+  GenerationV? generationV;
+  GenerationVi? generationVi;
+  GenerationVii? generationVii;
+  GenerationViii? generationViii;
 
   Versions(
       {this.generationI,
@@ -414,37 +380,21 @@ class Versions {
 
   Map toJson() {
     final Map data = new Map();
-    if (this.generationI != null) {
-      data['generation-i'] = this.generationI.toJson();
-    }
-    if (this.generationIi != null) {
-      data['generation-ii'] = this.generationIi.toJson();
-    }
-    if (this.generationIii != null) {
-      data['generation-iii'] = this.generationIii.toJson();
-    }
-    if (this.generationIv != null) {
-      data['generation-iv'] = this.generationIv.toJson();
-    }
-    if (this.generationV != null) {
-      data['generation-v'] = this.generationV.toJson();
-    }
-    if (this.generationVi != null) {
-      data['generation-vi'] = this.generationVi.toJson();
-    }
-    if (this.generationVii != null) {
-      data['generation-vii'] = this.generationVii.toJson();
-    }
-    if (this.generationViii != null) {
-      data['generation-viii'] = this.generationViii.toJson();
-    }
+    data['generation-i'] = this.generationI?.toJson();
+    data['generation-ii'] = this.generationIi?.toJson();
+    data['generation-iii'] = this.generationIii?.toJson();
+    data['generation-iv'] = this.generationIv?.toJson();
+    data['generation-v'] = this.generationV?.toJson();
+    data['generation-vi'] = this.generationVi?.toJson();
+    data['generation-vii'] = this.generationVii?.toJson();
+    data['generation-viii'] = this.generationViii?.toJson();
     return data;
   }
 }
 
 class GenerationI {
-  RedBlue redBlue;
-  RedBlue yellow;
+  RedBlue? redBlue;
+  RedBlue? yellow;
 
   GenerationI({this.redBlue, this.yellow});
 
@@ -458,21 +408,17 @@ class GenerationI {
 
   Map toJson() {
     final Map data = new Map();
-    if (this.redBlue != null) {
-      data['red-blue'] = this.redBlue.toJson();
-    }
-    if (this.yellow != null) {
-      data['yellow'] = this.yellow.toJson();
-    }
+    data['red-blue'] = this.redBlue?.toJson();
+    data['yellow'] = this.yellow?.toJson();
     return data;
   }
 }
 
 class RedBlue {
-  String backDefault;
-  String backGray;
-  String frontDefault;
-  String frontGray;
+  String? backDefault;
+  String? backGray;
+  String? frontDefault;
+  String? frontGray;
 
   RedBlue({this.backDefault, this.backGray, this.frontDefault, this.frontGray});
 
@@ -494,9 +440,9 @@ class RedBlue {
 }
 
 class GenerationIi {
-  Crystal crystal;
-  Crystal gold;
-  Crystal silver;
+  Crystal? crystal;
+  Crystal? gold;
+  Crystal? silver;
 
   GenerationIi({this.crystal, this.gold, this.silver});
 
@@ -510,24 +456,18 @@ class GenerationIi {
 
   Map toJson() {
     final Map data = new Map();
-    if (this.crystal != null) {
-      data['crystal'] = this.crystal.toJson();
-    }
-    if (this.gold != null) {
-      data['gold'] = this.gold.toJson();
-    }
-    if (this.silver != null) {
-      data['silver'] = this.silver.toJson();
-    }
+    data['crystal'] = this.crystal?.toJson();
+    data['gold'] = this.gold?.toJson();
+    data['silver'] = this.silver?.toJson();
     return data;
   }
 }
 
 class Crystal {
-  String backDefault;
-  String backShiny;
-  String frontDefault;
-  String frontShiny;
+  String? backDefault;
+  String? backShiny;
+  String? frontDefault;
+  String? frontShiny;
 
   Crystal(
       {this.backDefault, this.backShiny, this.frontDefault, this.frontShiny});
@@ -550,9 +490,9 @@ class Crystal {
 }
 
 class GenerationIii {
-  Emerald emerald;
-  Crystal fireredLeafgreen;
-  Crystal rubySapphire;
+  Emerald? emerald;
+  Crystal? fireredLeafgreen;
+  Crystal? rubySapphire;
 
   GenerationIii({this.emerald, this.fireredLeafgreen, this.rubySapphire});
 
@@ -569,22 +509,16 @@ class GenerationIii {
 
   Map toJson() {
     final Map data = new Map();
-    if (this.emerald != null) {
-      data['emerald'] = this.emerald.toJson();
-    }
-    if (this.fireredLeafgreen != null) {
-      data['firered-leafgreen'] = this.fireredLeafgreen.toJson();
-    }
-    if (this.rubySapphire != null) {
-      data['ruby-sapphire'] = this.rubySapphire.toJson();
-    }
+    data['emerald'] = this.emerald?.toJson();
+    data['firered-leafgreen'] = this.fireredLeafgreen?.toJson();
+    data['ruby-sapphire'] = this.rubySapphire?.toJson();
     return data;
   }
 }
 
 class Emerald {
-  String frontDefault;
-  String frontShiny;
+  String? frontDefault;
+  String? frontShiny;
 
   Emerald({this.frontDefault, this.frontShiny});
 
@@ -602,9 +536,9 @@ class Emerald {
 }
 
 class GenerationIv {
-  DiamondPearl diamondPearl;
-  DiamondPearl heartgoldSoulsilver;
-  DiamondPearl platinum;
+  DiamondPearl? diamondPearl;
+  DiamondPearl? heartgoldSoulsilver;
+  DiamondPearl? platinum;
 
   GenerationIv({this.diamondPearl, this.heartgoldSoulsilver, this.platinum});
 
@@ -622,28 +556,22 @@ class GenerationIv {
 
   Map toJson() {
     final Map data = new Map();
-    if (this.diamondPearl != null) {
-      data['diamond-pearl'] = this.diamondPearl.toJson();
-    }
-    if (this.heartgoldSoulsilver != null) {
-      data['heartgold-soulsilver'] = this.heartgoldSoulsilver.toJson();
-    }
-    if (this.platinum != null) {
-      data['platinum'] = this.platinum.toJson();
-    }
+    data['diamond-pearl'] = this.diamondPearl?.toJson();
+    data['heartgold-soulsilver'] = this.heartgoldSoulsilver?.toJson();
+    data['platinum'] = this.platinum?.toJson();
     return data;
   }
 }
 
 class DiamondPearl {
-  String backDefault;
-  String backFemale;
-  String backShiny;
-  String backShinyFemale;
-  String frontDefault;
-  String frontFemale;
-  String frontShiny;
-  String frontShinyFemale;
+  String? backDefault;
+  String? backFemale;
+  String? backShiny;
+  String? backShinyFemale;
+  String? frontDefault;
+  String? frontFemale;
+  String? frontShiny;
+  String? frontShinyFemale;
 
   DiamondPearl(
       {this.backDefault,
@@ -681,7 +609,7 @@ class DiamondPearl {
 }
 
 class GenerationV {
-  BlackWhite blackWhite;
+  BlackWhite? blackWhite;
 
   GenerationV({this.blackWhite});
 
@@ -693,23 +621,21 @@ class GenerationV {
 
   Map toJson() {
     final Map data = new Map();
-    if (this.blackWhite != null) {
-      data['black-white'] = this.blackWhite.toJson();
-    }
+    data['black-white'] = this.blackWhite?.toJson();
     return data;
   }
 }
 
 class BlackWhite {
-  DiamondPearl animated;
-  String backDefault;
-  String backFemale;
-  String backShiny;
-  String backShinyFemale;
-  String frontDefault;
-  String frontFemale;
-  String frontShiny;
-  String frontShinyFemale;
+  DiamondPearl? animated;
+  String? backDefault;
+  String? backFemale;
+  String? backShiny;
+  String? backShinyFemale;
+  String? frontDefault;
+  String? frontFemale;
+  String? frontShiny;
+  String? frontShinyFemale;
 
   BlackWhite(
       {this.animated,
@@ -738,9 +664,7 @@ class BlackWhite {
 
   Map toJson() {
     final Map data = new Map();
-    if (this.animated != null) {
-      data['animated'] = this.animated.toJson();
-    }
+    data['animated'] = this.animated?.toJson();
     data['back_default'] = this.backDefault;
     data['back_female'] = this.backFemale;
     data['back_shiny'] = this.backShiny;
@@ -754,8 +678,8 @@ class BlackWhite {
 }
 
 class GenerationVi {
-  OmegarubyAlphasapphire omegarubyAlphasapphire;
-  OmegarubyAlphasapphire xY;
+  OmegarubyAlphasapphire? omegarubyAlphasapphire;
+  OmegarubyAlphasapphire? xY;
 
   GenerationVi({this.omegarubyAlphasapphire, this.xY});
 
@@ -770,21 +694,17 @@ class GenerationVi {
 
   Map toJson() {
     final Map data = new Map();
-    if (this.omegarubyAlphasapphire != null) {
-      data['omegaruby-alphasapphire'] = this.omegarubyAlphasapphire.toJson();
-    }
-    if (this.xY != null) {
-      data['x-y'] = this.xY.toJson();
-    }
+    data['omegaruby-alphasapphire'] = this.omegarubyAlphasapphire?.toJson();
+    data['x-y'] = this.xY?.toJson();
     return data;
   }
 }
 
 class OmegarubyAlphasapphire {
-  String frontDefault;
-  String frontFemale;
-  String frontShiny;
-  String frontShinyFemale;
+  String? frontDefault;
+  String? frontFemale;
+  String? frontShiny;
+  String? frontShinyFemale;
 
   OmegarubyAlphasapphire(
       {this.frontDefault,
@@ -810,8 +730,8 @@ class OmegarubyAlphasapphire {
 }
 
 class GenerationVii {
-  DreamWorld icons;
-  OmegarubyAlphasapphire ultraSunUltraMoon;
+  DreamWorld? icons;
+  OmegarubyAlphasapphire? ultraSunUltraMoon;
 
   GenerationVii({this.icons, this.ultraSunUltraMoon});
 
@@ -825,18 +745,14 @@ class GenerationVii {
 
   Map toJson() {
     final Map data = new Map();
-    if (this.icons != null) {
-      data['icons'] = this.icons.toJson();
-    }
-    if (this.ultraSunUltraMoon != null) {
-      data['ultra-sun-ultra-moon'] = this.ultraSunUltraMoon.toJson();
-    }
+    data['icons'] = this.icons?.toJson();
+    data['ultra-sun-ultra-moon'] = this.ultraSunUltraMoon?.toJson();
     return data;
   }
 }
 
 class GenerationViii {
-  DreamWorld icons;
+  DreamWorld? icons;
 
   GenerationViii({this.icons});
 
@@ -847,17 +763,15 @@ class GenerationViii {
 
   Map toJson() {
     final Map data = new Map();
-    if (this.icons != null) {
-      data['icons'] = this.icons.toJson();
-    }
+    data['icons'] = this.icons?.toJson();
     return data;
   }
 }
 
 class Stats {
-  int baseStat;
-  int effort;
-  Ability stat;
+  int? baseStat;
+  int? effort;
+  Ability? stat;
 
   Stats({this.baseStat, this.effort, this.stat});
 
@@ -871,16 +785,14 @@ class Stats {
     final Map data = new Map();
     data['base_stat'] = this.baseStat;
     data['effort'] = this.effort;
-    if (this.stat != null) {
-      data['stat'] = this.stat.toJson();
-    }
+    data['stat'] = this.stat?.toJson();
     return data;
   }
 }
 
 class Types {
-  int slot;
-  Ability type;
+  int? slot;
+  Ability? type;
 
   Types({this.slot, this.type});
 
@@ -892,9 +804,7 @@ class Types {
   Map toJson() {
     final Map data = new Map();
     data['slot'] = this.slot;
-    if (this.type != null) {
-      data['type'] = this.type.toJson();
-    }
+    data['type'] = this.type?.toJson();
     return data;
   }
 }

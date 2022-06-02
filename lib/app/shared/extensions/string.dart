@@ -3,7 +3,7 @@ extension StringExtension on String {
     return "${this[0].toUpperCase()}${this.substring(1)}";
   }
 
-  String pokename() {
+  String? pokename() {
     const names = {'mr-mime': 'mrmime', 'wormadam-plant': 'wormadam'};
     if (names.containsKey(this)) return names[this];
     return this;

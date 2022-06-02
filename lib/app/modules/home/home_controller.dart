@@ -13,6 +13,8 @@ abstract class _HomeControllerBase with Store {
   final pokeApi = Modular.get<PokeApiRepository>();
   final refreshController = RefreshController();
 
+  bool isLoading = false;
+
   @observable
   ObservableList<Pokemon> pokemons = <Pokemon>[].asObservable();
 

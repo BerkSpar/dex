@@ -6,18 +6,18 @@ import 'package:flutter/material.dart';
 
 class PokemonCardWidget extends StatelessWidget {
   final Pokemon pokemon;
-  final Function onTap;
+  final VoidCallback onTap;
 
   PokemonCardWidget({
-    @required this.pokemon,
-    @required this.onTap,
+    required this.pokemon,
+    required this.onTap,
   });
 
   Widget _getTypes() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: List.generate(pokemon.types.length, (index) {
-        final type = pokemon.types[index].type;
+      children: List.generate(pokemon.types?.length ?? 0, (index) {
+        final type = pokemon.types![index].type;
         return Container(
           decoration: BoxDecoration(
             color: Colors.white30,
@@ -27,7 +27,7 @@ class PokemonCardWidget extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             child: Text(
-              type.name.capitalize(),
+              type!.name!.capitalize(),
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
@@ -48,7 +48,7 @@ class PokemonCardWidget extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              color: colors[pokemon.types[0].type.name],
+              color: colors[pokemon.types![0].type!.name],
             ),
             Positioned(
               right: -20,
@@ -66,7 +66,8 @@ class PokemonCardWidget extends StatelessWidget {
               right: 8,
               bottom: 8,
               child: CachedNetworkImage(
-                imageUrl: pokemon.sprites.other.officialArtwork.frontDefault,
+                imageUrl:
+                    pokemon.sprites?.other?.officialArtwork?.frontDefault ?? '',
                 height: 80,
                 width: 80,
               ),
@@ -77,7 +78,7 @@ class PokemonCardWidget extends StatelessWidget {
               child: Text(
                 '#${pokemon.id.toString().padLeft(3, '0')}',
                 style: TextStyle(
-                  color: darken(colors[pokemon.types[0].type.name], 0.2),
+                  color: darken(colors[pokemon.types?[0].type?.name]!, 0.2),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -90,7 +91,7 @@ class PokemonCardWidget extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    pokemon.name.capitalize(),
+                    pokemon.name!.capitalize(),
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,

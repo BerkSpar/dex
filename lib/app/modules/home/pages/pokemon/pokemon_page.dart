@@ -12,8 +12,8 @@ class PokemonPage extends StatefulWidget {
   _PokemonPageState createState() => _PokemonPageState();
 }
 
-class _PokemonPageState extends ModularState<PokemonPage, PokemonController> {
-  //use 'controller' variable to access controller
+class _PokemonPageState extends State<PokemonPage> {
+  final controller = Modular.get<PokemonController>();
 
   @override
   Widget build(BuildContext context) {

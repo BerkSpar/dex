@@ -30,15 +30,13 @@ class PokeApiRepository extends Disposable {
     List<Pokemon> list = <Pokemon>[];
 
     for (int i = _offset; i < _limit + _offset; i++) {
-      Pokemon pokemon = await _getCachedPokemon(i + 1);
+      Pokemon? pokemon = await _getCachedPokemon(i + 1);
 
       if (pokemon == null) {
         pokemon = await _getPokemon(i + 1);
       }
 
-      if (pokemon != null) {
-        list.add(pokemon);
-      }
+      list.add(pokemon);
     }
 
     _offset += _limit;
@@ -46,7 +44,7 @@ class PokeApiRepository extends Disposable {
     return list;
   }
 
-  Future<Pokemon> _getCachedPokemon(int id) async {
+  Future<Pokemon?> _getCachedPokemon(int id) async {
     final box = await completer.future;
     final pokemon = box.get(id);
 
