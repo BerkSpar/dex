@@ -1,4 +1,4 @@
-package com.example.dex
+package com.berkspar.dex
 
 import io.flutter.embedding.android.FlutterActivity
 
